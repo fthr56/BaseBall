@@ -3,16 +3,16 @@ import java.util.Collections;
 import java.util.List;
 
 public class BaseBallNumber {
-	//현재 버젼은 한번의 게임만 할 것이니 랜덤으로 저장된 값은 변경되면 게임에 문제가 생길수 있으니 final로 선언, 
+	//현재 버젼은 한번의 게임만 할 것이니 랜덤으로 저장된 값은 변경될 필요가 없으니 final로 선언, 
 	//만약 반복적으로 게임을 하게 할려면 변경 요망
-	final int[] comNumber;	
-	int[] userNumber = new int[3];
+	final int[] comNumber;			//컴퓨터가 3개의 임의의 변수를 담을 배열
+	int[] userNumber = new int[3];	//사용자가 반복적으로 입력하는 변수를 담을 배열
 
 	BaseBallNumber() {
 		//컴퓨터가 가지고 있을 랜덤한 숫자 생성
 		comNumber = setCom();
 	}
-	//1~9까지의 랜덤 숫자를 가진 int[3] 배열 리턴
+	//1~9까지의 랜덤 숫자를 가진 int[3] 배열을 리턴하여 생성자에서 사용
 	private int[] setCom() {
 
 		int[] com = new int[3];
@@ -29,17 +29,14 @@ public class BaseBallNumber {
 
 	public int setUser(String line){
 		String[] stringNum = line.split("");
-		
 		//사용자가 입력한 문자열이 숫자가 맞는지 확인 후 userNumber 배열에다 저장
 		for (int i = 0; i < stringNum.length; i++) {
 			if (stringNum[i].charAt(0) >= 48 && stringNum[i].charAt(0) <= 57) {
 				userNumber[i] = Integer.parseInt(stringNum[i]);
-				continue;
 			} else{
 				return -1;	//숫자가 아닌 값을 가지고 있으면 -1값을 리턴
 			}
 		}
-		
 		// 반복이 적은 3번이라 for문을 안쓰고 직접 대입 할려면 아래를 주석 해제 후 위의 for문을 주석처리 하면 된다.
 		// if (userNum[0].charAt(0) >= 48 && userNum[0].charAt(0) <= 57) {
 		// user[0] = Integer.parseInt(userNum[0]);
@@ -50,12 +47,12 @@ public class BaseBallNumber {
 		// if (userNum[2].charAt(0) >= 48 && userNum[2].charAt(0) <= 57) {
 		// user[2] = Integer.parseInt(userNum[2]);
 		// }
-		return 1;	//정상 종료 시 1을 리턴
+		return 1;	//올바른 값이 입력 되었다면 1을 리턴
 	}
 	
 	public int check() {
 		int strike = 0, ball = 0;
-		int trash; // 삼항 연산자를 수향할려고 만든 쓰레기 값;
+		int trash; // 삼항 연산자를 수행할려고 만든 쓰레기 값;
 
 		//for문을 안쓸려면 아래를 주석 해제
 		// user[0]과 com[0]이 같으면 strike 같에 1을 더한다. 아니라면 user[0]과 com[1], com[2]을
@@ -66,8 +63,10 @@ public class BaseBallNumber {
 //		trash = (userNumber[2] == comNumber[2]) ? strike++ : (userNumber[2] == comNumber[1]) ? ball++ : (userNumber[2] == comNumber[0]) ? ball++ : 0;
 
 		//for문과 비트 연산을 통해 같은 위치를 제외한 배열의 인덱스의 위치를 찾아 값이 같으면 ball++를 연산하게 한다.
-		for(int i =0; i< 3; i++){
-			int j = i;	//비트 연산으로 인해 i 값이 변할수 있으니 임시 변수를 사용
+		//첫번째에선 같은 같은 인덱스 끼리 비교, 두번째엔 i==1이면 0 아니면 1인 인덱스와 비교, 세번째엔 i==2이면 1 아니면 2인 인덱스와 비교
+		//for문 작동 시 위에 직접 입력한 값이랑 똑같은 인덱스로 돌아간다.
+		for(int i = 3; i-- != 0;){
+			int j = i;	//비트 연산으로 인해 i 값이 변할수 있으니 임시 변수를 사용 하여 비트연산
 			trash = (userNumber[i] == comNumber[i]) ? strike++ : (userNumber[i] == comNumber[(1&(j+1))]) ? ball++ : (userNumber[i] == comNumber[(2&(j+2))]) ? ball++ : 0;
 		}
 

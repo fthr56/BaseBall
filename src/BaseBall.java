@@ -10,11 +10,15 @@ public class BaseBall {
 				
 		Scanner scanner = new Scanner(System.in);
 		while (true) {
-			System.out.println("연속된 세 숫자를 입력하세요. (123 or 456)");
+			System.out.println("연속된 세 숫자를 입력하세요. [ex)123 , 종료:q]");
 
 			// 길이가 3인 문자열을 입력 받아 line에 저장, 길이가 3이 아니면 처음부터 다시 수행.
 			String line = scanner.nextLine();
-			if (line.length() < 3 || line.length() > 3) {
+			if(line.equals("q")){
+				System.out.println("게임을 종료 합니다.");
+				break;
+			}
+			if (line.length() != 3) {
 				System.out.println("잘못 입력 하셨습니다.");
 				continue;
 			}
@@ -29,7 +33,7 @@ public class BaseBall {
 			//baseballnumber.check()는 경기 결과를 알려 주고
 			//스트라이크 갯수를 리턴하여 3스트라이크가 되면 이기면서 while문을 빠져 나간다.
 			if (baseballnumber.check() == 3) {
-				System.out.printf("승리하셨습니다!!\n 게임을 종료 합니다.");
+				System.out.printf("승리하셨습니다!!\n게임을 종료 합니다.");
 				break;
 			}
 		}
