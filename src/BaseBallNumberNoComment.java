@@ -34,7 +34,7 @@ public class BaseBallNumberNoComment {
 			number[index++] = i;
 		}
 	}
-
+ 
 	public int check(int[] user1, int[] user2) {
 		int strike = 0, ball = 0;
 		int trash;

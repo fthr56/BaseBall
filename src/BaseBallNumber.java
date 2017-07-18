@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
+ 
 public class BaseBallNumber {
 			//만약 반복적으로 게임을 하게 할려면 변경 요망
 			int[] number = new int[3];	//사용자가 반복적으로 입력하는 변수를 담을 배열

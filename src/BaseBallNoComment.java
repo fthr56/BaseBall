@@ -8,7 +8,7 @@ public class BaseBallNoComment {
 		BaseBallNumberNoComment my;
 		BaseBallNumberNoComment other = new BaseBallNumberNoComment();
 		boolean setNewGameFlag = false;
-		
+		 
 		Scanner scanner = new Scanner(System.in);
 		while (inputNumber(scanner)) {
 			if (setNewGameFlag) {
