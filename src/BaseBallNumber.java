@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class BaseBallNumber {
-	//현재 버젼은 한번의 게임만 할 것이니 랜덤으로 저장된 값은 변경될 필요가 없으니 final로 선언, 
+	//작은 게임이라 문제는 없겠지만 진행되면서 변경되면  안되니 final로 선언 
 	//만약 반복적으로 게임을 하게 할려면 변경 요망
 	final int[] comNumber;			//컴퓨터가 3개의 임의의 변수를 담을 배열
 	int[] userNumber = new int[3];	//사용자가 반복적으로 입력하는 변수를 담을 배열
