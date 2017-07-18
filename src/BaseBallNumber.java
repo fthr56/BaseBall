@@ -20,11 +20,12 @@ public class BaseBallNumber {
 				Integer[] random = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 				List<Integer> rnd = Arrays.asList(random);
 				Collections.shuffle(rnd);
+				System.out.print("컴퓨터 번호: ");//처음 게임 이후는 사용자가 값을 입력한 다음 출력, 컴번호를 안보고 싶다면 주석
 				for (int i = 0; i < com.length; i++) {
 					com[i] = rnd.get(i);
 					System.out.print(com[i]); // 컴퓨터가 배정한 임의의 수 출력, 제대로된 게임을 할려면 주석 처리
 				}
-				System.out.println();
+				System.out.println();//컴번호를 안 볼거면 해당 개행도 필요 없다.
 				return com;
 			}
 			private void setUser(int[] userChoice){

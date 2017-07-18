@@ -13,33 +13,23 @@ public class BaseBall {
 		//BaseBallNumber(int[3] number)로 생성시 number에 들어간 데이터로 값 생성
 		//이러한 방식으로 추후 유저vs유저 게임이 가능하게 확장성을 열어둠.
 		
-		boolean flag = true;
 		Scanner scanner = new Scanner(System.in);
-		while (flag) {
-			// 처음엔 false로 초기화 되어 있어 무시하고 지나 간다음 게임을 승리한다음 사용자가 새게임을 원하면 true가 되어
-			// 들어온다
+		while (inputNumber(scanner)) {
+			
 			if (setNewGameFlag) {
+				// 처음엔 false로 초기화 되어 있어 무시하고 지나 간다음 게임을 승리한다음 사용자가 새게임을 원하면 true 세팅
 				other = new BaseBallNumber();
 				setNewGameFlag = false;
 			}
-			//종료키를 누르면 false를 리턴하여 while문을 빠져나감, true라면 게임 진행
-			flag = inputNumber(scanner);
 			
-			if (flag) {
-				my = new BaseBallNumber(myNumber); //넘겨준 배열 값으로 my클래스 내부 배열을 초기화
+				my = new BaseBallNumber(myNumber); //넘겨준 배열 값으로 my클래스 필드를 초기화하면서 클래스 생성
 				// my.check()는 경기 결과를 알려 주고
-				// 스트라이크 갯수를 리턴하여 3스트라이크가 되면 이기면서 while문을 빠져 나간다.
+				// 스트라이크 갯수를 리턴하여 3스트라이크가 되면 승리.
+				//이기더라도 일단 새 게임 시작 이후 사용자가 종료를 원하면 q를 누르는 방식으로 수정
 				if (my.check(my.number, other.number) == 3) {
-					System.out.printf("승리하셨습니다!!\n게임을 종료 하실려면 'q'를 입력하세요.(아무 키나 누르면 새게임)");
-					String line = scanner.nextLine();
-					if (line.equals("q")) {
-						System.out.print("Good bye!!!");
-						flag= false;
-						break;
-					}
-					setNewGameFlag = true;//새 게임을 수행하게하는 플래그
+					System.out.println("승리하셨습니다!! 새 게임을 시작합니다.\n");
+					setNewGameFlag = true;
 				}
-			}
 		}
 		scanner.close();
 	}
